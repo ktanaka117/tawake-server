@@ -1,0 +1,24 @@
+{
+  "name": "tawake",
+  "version": "0.0.1",
+  "description": "API Service for Tawake.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "ktanaka117",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.141.0",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "mocha": "^4.0.1",
+    "nock": "^9.0.27",
+    "supertest": "^3.0.0"
+  }
+}
