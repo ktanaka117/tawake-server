@@ -1,6 +1,7 @@
 'use strict'
 
 const s3 = require('../lib/s3')
+const dynamodb = require('../lib/dynamodb')
 const uuidv4 = require('uuid/v4')
 
 const controller = {
@@ -17,6 +18,8 @@ const controller = {
 		const fileName = [contentId, fileExtension].join('.')
 
 		await s3.put(decodedFile, fileName, contentType)
+
+		await dynamodb.addContent(contentId, `https://s3.amazonaws.com/tawake-dev/${fileName}`, `${fileName}`)
 
 		ctx.body = { 'health': 'OK!' }
 	}
