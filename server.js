@@ -7,10 +7,12 @@ const router = require('koa-router')()
 const bodyParser = require('koa-bodyparser')
 
 // controllers
+const contentsController = require('./controllers/contents_controller.js')
 
 // routing
 router
 	.get('/', (ctx) => { ctx.body = 'OK' })
+	.put('/images', contentsController.put)
 
 // export
 module.exports = app
