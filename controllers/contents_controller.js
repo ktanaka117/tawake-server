@@ -15,7 +15,9 @@ const controller = {
 		const fileExtension = encodedData.toString().slice(encodedData.indexOf('/') + 1, encodedData.indexOf(';'))
 		const contentType = encodedData.toString().slice(encodedData.indexOf(':') + 1, encodedData.indexOf(';'))
 
-		const fileName = [contentId, fileExtension].join('.')
+		const prefix = ctx.request.body.prefix
+
+		const fileName = prefix + [contentId, fileExtension].join('.')
 
 		await s3.put(decodedFile, fileName, contentType)
 
