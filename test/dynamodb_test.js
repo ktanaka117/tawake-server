@@ -28,7 +28,7 @@ describe('DynamoDB', () => {
 		})
 	})
 
-	context('getContentByTag', () => {
+	context('getContentsByTag', () => {
 		context('tagを引数に渡した場合', () => {
 			before(async () => {
 				await dynamodb.addContent(contentId, contentUrl, tags)
@@ -39,7 +39,7 @@ describe('DynamoDB', () => {
 			})
 
 			it('tagを含む関連するコンテンツが取得できること', async () => {
-				const contents = await dynamodb.getContentByTag('白峰あやか')
+				const contents = await dynamodb.getContentsByTag('白峰あやか')
 
 				assert.equal(contents[0].content_id, contentId)
 				assert.equal(contents[0].content_url, contentUrl)
