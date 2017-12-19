@@ -23,7 +23,12 @@ const controller = {
 
 		await dynamodb.addContent(contentId, `https://s3.amazonaws.com/tawake-dev/${fileName}`, `${tags}`)
 
-		ctx.body = { 'health': 'OK!' }
+		ctx.body = { 
+			contentId: contentId,
+			contentType: contentType,
+			fileName:fileName,
+			tags: tags
+		}
 	},
 
 	get: async (ctx, next) => {
