@@ -15,15 +15,24 @@ const controller = {
 		const fileExtension = encodedData.toString().slice(encodedData.indexOf('/') + 1, encodedData.indexOf(';'))
 		const contentType = encodedData.toString().slice(encodedData.indexOf(':') + 1, encodedData.indexOf(';'))
 
-		const prefix = ctx.request.body.prefix
+		const tags = ctx.request.body.tags.join('/')
 
-		const fileName = prefix + [contentId, fileExtension].join('.')
+		const fileName = [contentId, fileExtension].join('.')
 
 		await s3.put(decodedFile, fileName, contentType)
 
-		await dynamodb.addContent(contentId, `https://s3.amazonaws.com/tawake-dev/${fileName}`, `${fileName}`)
+		await dynamodb.addContent(contentId, `https://s3.amazonaws.com/tawake-dev/${fileName}`, `${tags}`)
 
 		ctx.body = { 'health': 'OK!' }
+	},
+
+	get: async (ctx, next) => {
+		const tag = ctx.params.tag
+
+		const contents = await dynamodb.getContentByTag(tag)
+		ctx.body = {
+			contents: contents
+		}
 	}
 }
 

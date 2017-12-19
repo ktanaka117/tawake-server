@@ -13,6 +13,7 @@ const contentsController = require('./controllers/contents_controller.js')
 router
 	.get('/', (ctx) => { ctx.body = 'OK' })
 	.put('/images', contentsController.put)
+	.get('/images/:tag', contentsController.get)
 
 // export
 module.exports = app
