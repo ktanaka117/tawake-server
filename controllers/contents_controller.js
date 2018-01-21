@@ -34,10 +34,8 @@ const controller = {
 	get: async (ctx, next) => {
 		const tag = ctx.params.tag
 
-		const contents = await dynamodb.getContentByTag(tag)
-		ctx.body = {
-			contents: contents
-		}
+		const contents = await dynamodb.getContentsByTag(tag)
+		ctx.body = { contents }
 	}
 }
 
